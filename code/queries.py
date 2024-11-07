@@ -2,20 +2,23 @@
 # How many artists are there?
 # Return a single column called "count" with a single row containing the count.
 query_1 = """
-
-    """
+select count(*) "count" from "Artist"
+"""
 
 # PROBLEM 2
 # How many Artists do not have an Album associated with them?
 # Return a single column called "count" with a single row containing the count.
 query_2 = """
-
+select count(*) "count" from "Artist" a left join "Album" a2 on a."ArtistId" = a2."ArtistId"
+where a2."ArtistId" is null
 """
 
-# PROBLEM 3
-# How many Albums do not have an artist in the Artist table associated with them?
-# Return a single column called "count" with a single row containing the count.
+
+
+
 query_3 = """
+select count(*) "count" from "Artist" a right join "Album" a2 on a."ArtistId" = a2."ArtistId"
+where a."ArtistId" is null
 
 """
 
@@ -24,6 +27,9 @@ query_3 = """
 # Return a single column called "AC/DC Tracks",
 # in any order.
 query_4 = """
+select t."Name" "AC/DC Tracks" from "Artist" a join "Album" a2 ON a."ArtistId" = a2."ArtistId" 
+join "Track" t on a2."AlbumId" = t."AlbumId" 
+where a."Name" = 'AC/DC'
 
 """
 
